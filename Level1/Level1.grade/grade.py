@@ -1,7 +1,6 @@
 def solution(scores):
     answer = ''
     scores=list(map(list,zip(*scores)))
-    a=[0 for _ in range(len(scores))]
     for i in range(len(scores)):
         cnt=len(scores)
         if max(scores[i])==scores[i][i] or min(scores[i])==scores[i][i]:
