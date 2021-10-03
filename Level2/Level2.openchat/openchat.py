@@ -1,5 +1,4 @@
 def solution(record):
-    answer = []
     answer=[]
     new1=" ".join(record)
     new=new1.split()
