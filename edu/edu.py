@@ -113,23 +113,66 @@
 #         answer.append(int(sumfee))
 # print(answer)
 
-gems = ["DIA", "RUBY", "RUBY", "DIA", "DIA", "EMERALD", "SAPPHIRE", "DIA"]
-setgems = list(set(gems))
-status = False
-answer = []
-left = 0
-right = len(gems) -1 
-while(left <= right):
-    temparr = list(set(gems[left:right+1]))
-    if sorted(temparr) == sorted(setgems):
-        answer.append([left+1,right+1])
-        right -= 1
-        status = True
-    else:
-        if status == True:
-            right += 1
-        left += 1
-        status = False
-answer = sorted(answer, key = lambda x: x[0])
-sortedanswer = sorted(answer, key = lambda x : x[1]-x[0])
-print(sortedanswer, sortedanswer[0])
+# gems = ["DIA", "RUBY", "RUBY", "DIA", "DIA", "EMERALD", "SAPPHIRE", "DIA"]
+# setgems = list(set(gems))
+# status = False
+# answer = []
+# left = 0
+# right = len(gems) -1 
+# while(left <= right):
+#     temparr = list(set(gems[left:right+1]))
+#     if sorted(temparr) == sorted(setgems):
+#         answer.append([left+1,right+1])
+#         right -= 1
+#         status = True
+#     else:
+#         if status == True:
+#             right += 1
+#         left += 1
+#         status = False
+# answer = sorted(answer, key = lambda x: x[0])
+# sortedanswer = sorted(answer, key = lambda x : x[1]-x[0])
+# print(sortedanswer, sortedanswer[0])
+
+
+# answer = 0
+# def dfs(k, dungeon, cnt, visited):
+#     global answer
+#     if cnt > answer:
+#         answer = cnt
+#     for i in range(len(dungeon)):
+#         if visited[i] == 0 and dungeon[i][0] <= k:
+#             visited[i] = 1
+#             dfs(k-dungeon[i][1], dungeon,cnt +1,visited)
+#             visited[i] = 0
+# def solution(k, dungeons):
+#     visited = [0] * len(dungeons)
+#     dungeons = sorted(dungeons, key = lambda x:x[0])
+#     dfs(k, dungeons,0, visited)
+#     return answer
+
+# def solution(routes):
+#     routes = sorted(routes, key = lambda x:x[1])
+#     camera = -300001
+#     cnt = 0
+#     for i in range(len(routes)):
+#         if camera >= routes[i][0] and camera <= routes[i][1]:
+#             continue
+#         else:
+#             camera = routes[i][1]
+#         cnt+=1
+#     return cnt
+# import sys
+# n = int(input())
+# answer = []
+# def swimming(credit, plan):
+#     for i in range(len(plan)):
+        
+# for i in range(n):
+#     credit = []
+#     plan = []
+#     credit = list(map(int, sys.stdin.readline().split()))
+#     plan = list(map(int, sys.stdin.readline().split()))
+#     swimming(credit, plan)
+
+
