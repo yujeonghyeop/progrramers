@@ -1,63 +1,16 @@
-from collections import deque
-# menu = [5, 12, 30]
-# order = [2, 2, 0, 0, 0, 1, 0]	
-# dq = deque()
-# for i in order:
-#     dq.append(i)
-# k = 10
-# time = 0
-# cafetime = 0
-# maketime = 0
-# waitinglist = deque()
-# cnt = 0
-# maxlist = -1
-# waitcount = 0
-# waitinglist.append(cnt)
-# while(len(dq)!=0):
-#     if len(waitinglist)>maxlist:
-#         maxlist = len(waitinglist)
-#     print(cafetime, maketime, dq, waitinglist, cnt)
-#     if cafetime+k < maketime + menu[order[cnt]]:
-#         cafetime+=k
-#         if waitcount < len(order)-1:
-#             waitcount+=1
-#             waitinglist.append(waitcount)
-#     else:
-#         dq.popleft()
-#         if len(waitinglist) !=0:
-#             waitinglist.popleft()
-#         maketime += menu[order[cnt]]
-#         cnt+=1
-# print(maxlist)
-
-# menu = [5,12,30]
-# order = [2, 2, 0, 0, 0, 1, 0]
-# k = 10
-# time = 0
-# maxwaitng = -1
-# for i in range(len(order)):
-#     time += menu[order[i]]
-#     if time%k ==0:
-#         waiting = (time//k)  - (i)
-#     else:
-#         waiting = (time//k) +1 - (i)
-#     if waiting >= maxwaitng:
-#         maxwaitng = waiting
-# print(maxwaitng)
-
-menu = [5,12,30]
-order = [1,2,0,1]
-k = 10
-dq = deque()
-waiting = deque()
-maketime = 0
-answer = 0
-for i in range(k*(len(order)-1)+1):
-    if len(waiting) != 0:
-        if i == maketime + menu[order[waiting[0]]]:
-            maketime +=menu[order[waiting[0]]]
+from collections import deque # 최대한 일반 사회에서의 구조와 비슷하게 만들어 주어야 한다.
+def solution(menu, order, k): # 알바는 주문을 받고 만들 수 있는 상태이면 바로 만들어 주고
+    dq = deque()# 만들수 없는 상태라면 손님이 대기하는 구조이기 때문에 이를 적용하여 만들어 준다
+    waiting = deque()
+    maketime = -1
+    answer = 0
+    for i in range(k*(len(order)-1)+1):
+        if i == maketime:
             waiting.popleft()
-    if i % k ==0:
-        waiting.append(i//k)
-    answer = max(answer, len(waiting))  
-print(answer)
+            maketime = -1
+        if i % k ==0:
+            waiting.append(i//k)
+        if maketime == -1 and len(waiting) != 0:
+            maketime = i+menu[order[waiting[0]]]
+        answer = max(answer, len(waiting))  
+    return answer
