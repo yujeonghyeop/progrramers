@@ -176,3 +176,25 @@
 #     swimming(credit, plan)
 
 
+s=5
+e=16
+result = 0
+while(s!=e):
+    print(s)
+    if (s>e):
+        result = s-e
+        print(s,result)
+        break
+    elif e-s >= 5:
+        s+=5
+        result += 1
+        print("5칸이동",s,result)
+    elif (e-s)==4:
+        s+=4
+        result +=2
+        print("2칸이동",s,result)        
+    else:
+        s+= (e-s)
+        result += (e-s)
+        print("차 이동",e-s,s,result)
+print(result)
