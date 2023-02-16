@@ -17,25 +17,20 @@
 #         answer+=1
 #     return answer
 import collections
-bridge_length = 2
-weight = 10
-truck_weights = [7,4,5,6]
-time = 1
-dq = collections.deque(truck_weights)
-road = collections.deque([0]*bridge_length)
-cnt = 0
-roadsum = 0
-road[-1] = dq.popleft()
-roadsum += road[-1]
-print(dq,road)
-while(sum(road)!=0):
-    roadsum -= road.popleft()
-    time += 1
-    if len(dq)!=0 and roadsum + dq[0] <= weight:
-        road.append(dq.popleft())
-        roadsum += road[-1]
-    else:
-        road.append(0)
-    print(road, dq)
-print(time)
-    
+def solution(bridge_length, weight, truck_weights):
+    time = 1
+    dq = collections.deque(truck_weights)
+    road = collections.deque([0]*bridge_length)
+    cnt = 0
+    roadsum = 0
+    road[-1] = dq.popleft()
+    roadsum += road[-1]
+    while(roadsum!=0):
+        roadsum -= road.popleft()
+        time += 1
+        if len(dq)!=0 and roadsum + dq[0] <= weight:
+            road.append(dq.popleft())
+            roadsum += road[-1]
+        else:
+            road.append(0)
+    return time
