@@ -1,19 +1,30 @@
 from collections import deque
-def solution(maps):
-    d = [[1,0],[-1,0],[0,1],[0,-1]]
-    table = [[-1 for _ in range(len(maps[0]))]for _ in range(len(maps))]
-    q=deque()
+def dfs(array,visited):
+    dx = [-1,0,1,0]
+    dy = [0,-1,0,1]
+    q = deque()
     q.append([0,0])
-    table[0][0]=1
+    visited[0][0] = 1
     while(q):
-        y,x=q.popleft()
+        x,y = q.popleft()
         for i in range(4):
-            dy = y+d[i][0]
-            dx = x+d[i][1]
+            ddx = x + dx[i]
+            ddy = y + dy[i]
+            if ddx < 0 or ddx>=len(array) or ddy <0 or ddy >= len(array[0]):
+                continue
+            elif visited[ddx][ddy] != -1:
+                continue
+            elif array[ddx][ddy] == 0:
+                continue
+            else:
+                q.append([ddx,ddy])
+                visited[ddx][ddy] = visited[x][y] + 1
 
-            if -1<dy<len(maps) and -1<dx<len(maps[0]):
-                if maps[dy][dx]==1:
-                    if table[dy][dx]==-1:
-                        table[dy][dx]=table[y][x]+1
-                        q.append([dy,dx])
-    return table[-1][-1]
+    return visited
+def solution(maps):
+    visited = [[-1]*len(maps[0]) for _ in range(len(maps))]
+    answer = dfs(maps, visited)
+    if answer[-1][-1] == 1:
+        return -1
+    else:
+        return answer[-1][-1]
